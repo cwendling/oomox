@@ -259,15 +259,24 @@ class CenterLabel(Gtk.Label):
         self.set_margin_bottom(6)
 
 
-class ImageButton(Gtk.Button):
+def _ImageContainerFactory(parent):
+    assert(issubclass(parent, Gtk.Container))
 
-    icon = None
-    image = None
+    class cls(parent):
 
-    def __init__(self, icon_name, tooltip_text=None):
-        super().__init__()
-        self.icon = Gio.ThemedIcon(name=icon_name)
-        self.image = Gtk.Image.new_from_gicon(self.icon, Gtk.IconSize.BUTTON)
-        self.add(self.image)
-        if tooltip_text:
-            self.set_tooltip_text(tooltip_text)
+        icon = None
+        image = None
+
+        def __init__(self, icon_name, tooltip_text=None):
+            super().__init__()
+            self.icon = Gio.ThemedIcon(name=icon_name)
+            self.image = Gtk.Image.new_from_gicon(self.icon, Gtk.IconSize.BUTTON)
+            self.add(self.image)
+            if tooltip_text:
+                self.set_tooltip_text(tooltip_text)
+
+    return cls
+
+
+ImageButton = _ImageContainerFactory(Gtk.Button)
+ImageMenuButton = _ImageContainerFactory(Gtk.MenuButton)
