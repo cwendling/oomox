@@ -106,18 +106,16 @@ def dialog_is_yes(dialog):
     return dialog.run() == Gtk.ResponseType.OK
 
 
-class Actions(Enum):
+class Actions(str, Enum):
+    def __init__(self, value):
+        super().__init__()
+        """ use the string as name """
+        self._name_ = value
+        self._value_ = '.'.join([self.target, value])
+
     @property
     def target(self):
         return self.__class__.__name__
-
-    @property
-    def name(self):
-        """ returns the value, not the constant name, to preserve dashes """
-        return self.value
-
-    def __str__(self):
-        return '.'.join([self.target, self.name])
 
 
 class app(Actions):
@@ -256,7 +254,7 @@ class AppWindow(Gtk.ApplicationWindow):
         self.check_unsaved_changes()
 
     def action_tooltip(self, action, tooltip):
-        accels = self.get_application().get_accels_for_action(str(action))
+        accels = self.get_application().get_accels_for_action(action)
         if accels:
             key, mods = Gtk.accelerator_parse(accels[0])
             tooltip += ' ({})'.format(Gtk.accelerator_get_label(key, mods))
