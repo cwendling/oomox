@@ -1,6 +1,7 @@
 #!/bin/env python3
 import os
 import sys
+from enum import Enum
 import gi
 gi.require_version('Gtk', '3.0')  # noqa
 from gi.repository import Gtk, GObject, Gio
@@ -105,24 +106,33 @@ def dialog_is_yes(dialog):
     return dialog.run() == Gtk.ResponseType.OK
 
 
-class ActionName(str):
-    def short_name(self):
-        return self.split('.')[-1]
+class Actions(Enum):
+    @property
+    def target(self):
+        return self.__class__.__name__
+
+    @property
+    def name(self):
+        """ returns the value, not the constant name, to preserve dashes """
+        return self.value
+
+    def __str__(self):
+        return '.'.join([self.target, self.name])
 
 
-class app(object):
-    quit = ActionName("app.quit")
+class app(Actions):
+    quit = "quit"
 
 
-class win(object):
-    clone = ActionName("win.clone")
-    export_icons = ActionName("win.export-icons")
-    export_spotify = ActionName("win.export-spotify")
-    export_theme = ActionName("win.export-theme")
-    menu = ActionName("win.menu")
-    remove = ActionName("win.remove")
-    rename = ActionName("win.rename")
-    save = ActionName("win.save")
+class win(Actions):
+    clone = "clone"
+    export_icons = "export-icons"
+    export_spotify = "export-spotify"
+    export_theme = "export-theme"
+    menu = "menu"
+    remove = "remove"
+    rename = "rename"
+    save = "save"
 
 
 class AppWindow(Gtk.ApplicationWindow):
@@ -255,24 +265,24 @@ class AppWindow(Gtk.ApplicationWindow):
         # self.headerbar.pack_start(new_button)
 
         clone_button = ImageButton("edit-copy-symbolic", "Clone current theme")
-        clone_button.set_action_name(win.clone)
+        clone_button.set_action_name(str(win.clone))
         self.headerbar.pack_start(clone_button)
 
         save_button = ImageButton("document-save-symbolic", "Save theme")
-        save_button.set_action_name(win.save)
+        save_button.set_action_name(str(win.save))
         self.headerbar.pack_start(save_button)
 
         rename_button = ImageButton(
             # "preferences-desktop-font-symbolic", "Rename theme"
             "pda-symbolic", "Rename theme"
         )
-        rename_button.set_action_name(win.rename)
+        rename_button.set_action_name(str(win.rename))
         self.headerbar.pack_start(rename_button)
 
         remove_button = ImageButton(
             "edit-delete-symbolic", "Remove theme"
         )
-        remove_button.set_action_name(win.remove)
+        remove_button.set_action_name(str(win.remove))
         self.headerbar.pack_start(remove_button)
 
         #
@@ -280,27 +290,27 @@ class AppWindow(Gtk.ApplicationWindow):
         menu = Gio.Menu()
         """
         menu.append_item(Gio.MenuItem.new("_Export icon theme",
-                                          win.export_icons))
+                                          str(win.export_icons)))
         """
         menu.append_item(Gio.MenuItem.new("Apply Spotif_y theme",
-                                          win.export_spotify))
+                                          str(win.export_spotify)))
 
         menu_button = ImageMenuButton(
             "open-menu-symbolic", "Remove theme"
         )
         menu_button.set_use_popover(True)
         menu_button.set_menu_model(menu)
-        self.add_action(Gio.PropertyAction.new(win.menu.short_name(),
+        self.add_action(Gio.PropertyAction.new(win.menu.name,
                                                menu_button, "active"))
         self.headerbar.pack_end(menu_button)
 
         export_icons_button = Gtk.Button(label="Export _icons",
                                          use_underline=True)
-        export_icons_button.set_action_name(win.export_icons)
+        export_icons_button.set_action_name(str(win.export_icons))
         self.headerbar.pack_end(export_icons_button)
 
         export_button = Gtk.Button(label="_Export theme", use_underline=True)
-        export_button.set_action_name(win.export_theme)
+        export_button.set_action_name(str(win.export_theme))
         self.headerbar.pack_end(export_button)
 
         self.set_titlebar(self.headerbar)
@@ -317,7 +327,7 @@ class AppWindow(Gtk.ApplicationWindow):
 
     def _init_actions(self):
         def add_simple_action(action_id, callback):
-            action = Gio.SimpleAction.new(action_id.short_name(), None)
+            action = Gio.SimpleAction.new(action_id.name, None)
             action.connect("activate", callback)
             self.add_action(action)
             return action
@@ -376,20 +386,20 @@ class Application(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
-        quit_action = Gio.SimpleAction.new(app.quit.short_name(), None)
+        quit_action = Gio.SimpleAction.new(app.quit.name, None)
         quit_action.connect("activate", self.on_quit)
         self.add_action(quit_action)
 
-        self.set_accels_for_action(app.quit, ["<Primary>Q"])
+        self.set_accels_for_action(str(app.quit), ["<Primary>Q"])
 
-        self.set_accels_for_action(win.clone, ["<Primary>D"])
-        self.set_accels_for_action(win.save, ["<Primary>S"])
-        self.set_accels_for_action(win.rename, ["F2"])
-        self.set_accels_for_action(win.remove, ["<Primary>Delete"])
-        self.set_accels_for_action(win.export_theme, ["<Primary>E"])
-        self.set_accels_for_action(win.export_icons, ["<Primary>I"])
-        self.set_accels_for_action(win.export_spotify, [])
-        self.set_accels_for_action(win.menu, ["F10"])
+        self.set_accels_for_action(str(win.clone), ["<Primary>D"])
+        self.set_accels_for_action(str(win.save), ["<Primary>S"])
+        self.set_accels_for_action(str(win.rename), ["F2"])
+        self.set_accels_for_action(str(win.remove), ["<Primary>Delete"])
+        self.set_accels_for_action(str(win.export_theme), ["<Primary>E"])
+        self.set_accels_for_action(str(win.export_icons), ["<Primary>I"])
+        self.set_accels_for_action(str(win.export_spotify), [])
+        self.set_accels_for_action(str(win.menu), ["F10"])
 
     def do_activate(self):
         if not self.window:
