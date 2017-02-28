@@ -8,7 +8,7 @@
 @include exports("actionbar") {
     actionbar > revealer > box {
         padding: $spacing;
-        border-top: 1px solid $borders_color;
+        border-top: $borders_width solid $borders_color;
 
         &:backdrop { border-color: $backdrop_borders_color; }
     }
@@ -24,7 +24,7 @@
     .location-bar {
         @include linear-gradient(shade($bg_color, .98));
 
-        border-width: 0 0 1px;
+        border-width: 0 0 $borders_width;
         border-style: solid;
         border-color: border_normal($bg_color);
         color: $fg_color;

@@ -6,7 +6,7 @@
     color: $fg;
 
     &.header {
-        border-bottom: 1px solid shade($bg, ($contrast + .1));
+        border-bottom: $borders_width solid shade($bg, ($contrast + .1));
         border-radius: 0;
 
         &:backdrop { border-color: shade($bg, ($contrast + .1)); }
@@ -45,7 +45,8 @@
         > menuitem {
             min-height: 16px;
             padding: $spacing*1.5 $spacing * 2.5;
-            border: 1px solid transparent;
+            // FIXME: that one is probably not a good idea
+            border: $borders_width solid transparent;
             background-color: transparent;
             background-image: none;
             color: $menubar_fg_color;
@@ -160,13 +161,13 @@
 
             &.top {
                 margin-top: -6px;
-                border-bottom: 1px solid mix($fg_color, $base_color, .1);
+                border-bottom: $borders_width solid mix($fg_color, $base_color, .1);
                 -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
             }
 
             &.bottom {
                 margin-bottom: -6px;
-                border-top: 1px solid mix($fg_color, $base_color, .1);
+                border-top: $borders_width solid mix($fg_color, $base_color, .1);
                 -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
             }
 
@@ -229,7 +230,7 @@
         .csd &, & {
             /*@include border($menu_bg_color);*/
             @include border(alpha($menu_fg_color, .5));
-            border-width: 1px;
+            border-width: $borders_width;
             border-style: solid;
         }
 

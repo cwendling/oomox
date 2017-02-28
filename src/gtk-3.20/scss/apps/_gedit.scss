@@ -4,7 +4,7 @@
 
 @include exports("gedit") {
     GeditWindow .pane-separator {
-        border-width: 0 1px 0 0;
+        border-width: 0 $borders_width 0 0;
         border-style: solid;
 
         &, &:hover {
@@ -25,7 +25,7 @@
                 border-radius: $roundness;
                 border-style: solid;
                 border-color: transparent;
-                border-width: 1px;
+                border-width: $borders_width;
                 background-color: transparent;
                 background-image: none;
                 color: transparent;
@@ -54,7 +54,7 @@
 
     .gedit-document-panel-group-row {
         &, &:hover {
-            border-top: 1px solid shade($bg_color, ($contrast + .1));
+            border-top: $borders_width solid shade($bg_color, ($contrast + .1));
             background-color: $bg_color;
         }
     }
@@ -68,7 +68,7 @@
     }
 
     .gedit-document-panel-dragged-row {
-        border: 1px solid alpha($black, .1);
+        border: $borders_width solid alpha($black, .1);
         background-color: alpha($black, .5);
         color: $white;
     }
@@ -80,14 +80,14 @@
     }
 
     //Ignore: Global double border separator.
-    //statusbar { border-top: 1px solid border_normal($bg_color); }
+    //statusbar { border-top: $borders_width solid border_normal($bg_color); }
 
     statusbar GeditSmallButton, GeditStatusMenuButton {
         text-shadow: none;
 
         button {
             border-style: solid;
-            border-width: 0 1px;
+            border-width: 0 $borders_width;
             border-color: transparent;
             border-radius: 0;
             padding: 1px 6px 2px 4px;
@@ -104,7 +104,7 @@
     GeditViewFrame .gedit-search-slider {
         padding: $spacing;
         border-radius: 0 0 $roundness $roundness;
-        border-width: 0 1px 1px;
+        border-width: 0 $borders_width $borders_width;
         border-style: solid;
         border-color: border_normal($base_color);
         background-color: $base_color;

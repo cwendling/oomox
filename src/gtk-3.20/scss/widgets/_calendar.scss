@@ -20,7 +20,7 @@
         }
 
         &.header {
-            border-bottom: 1px solid transparentize($black, .9);
+            border-bottom: $borders_width solid transparentize($black, .9);
             border-radius: 0;
 
             &:backdrop { border-color: transparentize($black, .9); }

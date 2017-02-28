@@ -11,14 +11,14 @@
         &:dir(ltr),
         &.left,
         &.left:dir(rtl) {
-            border-right: 1px solid $borders_color;
+            border-right: $borders_width solid $borders_color;
             border-left-style: none;
         }
 
         @at-root %sidebar_right
         &:dir(rtl),
         &.right {
-            border-left: 1px solid $borders_color;
+            border-left: $borders_width solid $borders_color;
             border-right-style: none;
         }
 

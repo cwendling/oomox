@@ -46,7 +46,7 @@
         min-height: 14px + $spacing * 2;
         min-width: 14px + $spacing * 2;
         padding: $spacing ($spacing + 2px);
-        border-width: 1px;
+        border-width: $borders_width;
         border-style: solid;
         border-radius: $roundness;
         transition: 150ms ease;
@@ -85,14 +85,14 @@
     }
 
     %linked_button {
-        border-width: 1px;
+        border-width: $borders_width;
         border-style: solid;
         border-radius: 0;
         border-right-style: none;
         border-left-style: none;
 
         &:first-child {
-            border-width: 1px;
+            border-width: $borders_width;
             border-radius: $roundness;
             border-left-style: solid;
             border-right-style: none;
@@ -106,7 +106,7 @@
         }
 
         &:last-child {
-            border-width: 1px;
+            border-width: $borders_width;
             border-radius: $roundness;
             border-left-style: none;
             border-right-style: solid;
@@ -120,7 +120,7 @@
         }
 
         &:only-child, &:first-child:only-child {
-            border-width: 1px;
+            border-width: $borders_width;
             border-style: solid;
         }
 
@@ -130,14 +130,14 @@
     }
 
     %linked_vertical_button {
-        border-width: 1px;
+        border-width: $borders_width;
         border-style: solid;
         border-radius: 0;
         border-top-style: none;
         border-bottom-style: none;
 
         &:first-child {
-            border-width: 1px;
+            border-width: $borders_width;
             border-radius: $roundness;
             border-top-style: solid;
             border-bottom-style: none;
@@ -151,7 +151,7 @@
         }
 
         &:last-child {
-            border-width: 1px;
+            border-width: $borders_width;
             border-radius: $roundness;
             border-top-style: none;
             border-bottom-style: solid;
@@ -165,7 +165,7 @@
         }
 
         &:only-child, &:first-child:only-child {
-            border-width: 1px;
+            border-width: $borders_width;
             border-style: solid;
         }
 
@@ -339,7 +339,7 @@
 
         &:disabled:disabled {
             @include linear-gradient(alpha(mix($bg, $fg, .2), .4));
-            /*border: 1px solid alpha($bg, .2);*/
+            /*border: $borders_width solid alpha($bg, .2);*/
             opacity: .4;
 
             color: mix($bg, $fg, .5);
@@ -355,7 +355,7 @@
     }
 
     &.separator, .separator {
-        border: 1px solid currentColor;
+        border: $borders_width solid currentColor;
         color: alpha($bg, ($contrast + .1));
 
         &:disabled { color: alpha($bg, .85); }
@@ -364,20 +364,20 @@
 
 @include exports("button") {
     %close_button {
-        border: 1px solid transparent;
+        border: $borders_width solid transparent;
         background-color: transparent;
         background-image: none;
         box-shadow: none;
 
         &:focus, &:hover {
-            border: 1px solid alpha($bg_color, .3);
+            border: $borders_width solid alpha($bg_color, .3);
             background-color: alpha($fg_color, .2);
             background-image: none;
             box-shadow: none;
         }
 
         &:active, &:checked, &:active:hover, &:checked:hover {
-            border: 1px solid alpha($selected_bg_color, .3);
+            border: $borders_width solid alpha($selected_bg_color, .3);
             background-color: alpha($selected_fg_color, .1);
             background-image: none;
             box-shadow: none;

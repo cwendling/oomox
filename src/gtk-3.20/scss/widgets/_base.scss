@@ -115,7 +115,7 @@ label {
 assistant {
     .sidebar {
         background-color: $base_color;
-        border-top: 1px solid $borders_color;
+        border-top: $borders_width solid $borders_color;
 
         &:backdrop {
             background-color: $backdrop_base_color;

@@ -24,7 +24,7 @@
                 &, &:backdrop { // Backdrop button fix: https://github.com/numixproject/numix-gtk-theme/issues/544
                     @include linear-gradient($bg_color);
 
-                    border: 1px solid shade($bg_color, .8);
+                    border: $borders_width solid shade($bg_color, .8);
                     caret-color: currentColor;
 
                     label, & { color: $fg_color; }

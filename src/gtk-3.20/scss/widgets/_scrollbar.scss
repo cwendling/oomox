@@ -18,10 +18,10 @@
         transition: 300ms ease-out;
 
         // scrollbar border on the content side
-        &.top { border-bottom: 1px solid $borders_color; }
-        &.bottom { border-top: 1px solid $borders_color; }
-        &.left { border-right: 1px solid $borders_color; }
-        &.right { border-left: 1px solid $borders_color; }
+        &.top { border-bottom: $borders_width solid $borders_color; }
+        &.bottom { border-top: $borders_width solid $borders_color; }
+        &.left { border-right: $borders_width solid $borders_color; }
+        &.right { border-left: $borders_width solid $borders_color; }
 
         &:backdrop {
             background-color: $backdrop_scrollbar_bg_color;
@@ -32,7 +32,7 @@
         slider {
             min-width: $_slider_normal_width;
             min-height: $_slider_normal_width;
-            border: 1px solid transparent;
+            border: $borders_width solid transparent;
             border-radius: $roundness;
             background-clip: padding-box;
             background-color: $scrollbar_slider_color;
@@ -62,7 +62,7 @@
                     min-width: $_slider_small_width;
                     min-height: $_slider_small_width;
                     background-color: $fg_color;
-                    border: 1px solid if($variant == 'light', $white, $black);
+                    border: $borders_width solid if($variant == 'light', $white, $black);
                 }
 
                 // hide steppers
@@ -107,12 +107,12 @@
             button {
                 &.down {
                     -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
-                    border-top: 1px solid $borders_color;
+                    border-top: $borders_width solid $borders_color;
                 }
 
                 &.up {
                     -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
-                    border-bottom: 1px solid $borders_color;
+                    border-bottom: $borders_width solid $borders_color;
                 }
             }
         }
@@ -121,12 +121,12 @@
             button {
                 &.down {
                     -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
-                    border-left: 1px solid $borders_color;
+                    border-left: $borders_width solid $borders_color;
                 }
 
                 &.up {
                     -gtk-icon-source: -gtk-icontheme("pan-start-symbolic");
-                    border-right: 1px solid $borders_color;
+                    border-right: $borders_width solid $borders_color;
                 }
             }
         }

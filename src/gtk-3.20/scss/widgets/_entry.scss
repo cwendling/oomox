@@ -3,13 +3,13 @@
 **********/
 
 %linked_entry {
-    border-width: 1px;
+    border-width: $borders_width;
     border-radius: 0;
     border-right-width: 0;
     border-left-width: 0;
 
     &:first-child {
-        border-width: 1px;
+        border-width: $borders_width;
         border-radius: $roundness;
         border-right-width: 0;
         border-bottom-right-radius: 0;
@@ -17,25 +17,25 @@
 
         &:dir(rtl) {
             border-left-width: 0;
-            border-right-width: 1px;
+            border-right-width: $borders_width;
         }
     }
 
     &:last-child {
-        border-width: 1px;
+        border-width: $borders_width;
         border-radius: $roundness;
         border-left-width: 0;
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
 
         &:dir(rtl) {
-            border-left-width: 1px;
+            border-left-width: $borders_width;
             border-right-width: 0;
         }
     }
 
     &:only-child, &:first-child:only-child {
-        border-width: 1px;
+        border-width: $borders_width;
     }
 
     &:only-child {
@@ -44,41 +44,41 @@
 }
 
 %linked_vertical_entry {
-    border-width: 1px;
+    border-width: $borders_width;
     border-radius: 0;
     border-top-width: 0;
     border-bottom-width: 0;
 
     &:first-child {
-        border-width: 1px;
+        border-width: $borders_width;
         border-radius: $roundness;
-        border-top-width: 1px;
+        border-top-width: $borders_width;
         border-bottom-width: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
 
         &:dir(rtl) {
             border-top-width: 0;
-            border-bottom-width: 1px;
+            border-bottom-width: $borders_width;
         }
     }
 
     &:last-child {
-        border-width: 1px;
+        border-width: $borders_width;
         border-radius: $roundness;
         border-top-width: 0;
-        border-bottom-width: 1px;
+        border-bottom-width: $borders_width;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
 
         &:dir(rtl) {
-            border-top-width: 1px;
+            border-top-width: $borders_width;
             border-bottom-width: 0;
         }
     }
 
     &:only-child, &:first-child:only-child {
-        border-width: 1px;
+        border-width: $borders_width;
     }
 
     &:only-child {
@@ -87,7 +87,7 @@
 }
 
 %entry {
-    border-width: 1px;
+    border-width: $borders_width;
     border-style: solid;
     border-radius: $roundness;
     border-color: border_normal($bg_color);

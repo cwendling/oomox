@@ -92,7 +92,7 @@
         }
 
         overlay {
-            border: 1px solid if($variant == 'light', transparentize($black, .7), $borders_color);
+            border: $borders_width solid if($variant == 'light', transparentize($black, .7), $borders_color);
 
             &:hover {
                 box-shadow: inset 0 1px transparentize($white, .6),
@@ -166,12 +166,12 @@
     filechooser {
         /* for fallback when header bar not used */
         .dialog-action-box {
-            border-top: 1px solid $borders_color;
+            border-top: $borders_width solid $borders_color;
 
             &:backdrop { border-top-color: $backdrop_borders_color; }
         }
 
-        #pathbarbox { border-bottom: 1px solid $bg_color; }
+        #pathbarbox { border-bottom: $borders_width solid $bg_color; }
     }
 
     filechooserbutton:drop(active) {

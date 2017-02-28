@@ -44,7 +44,7 @@
 @include exports("treeview") {
     .rubberband,
     rubberband {
-        border: 1px solid darken($selected_bg_color, .1);
+        border: $borders_width solid darken($selected_bg_color, .1);
         background-color: transparentize(darken($selected_bg_color, .1), .8);
     }
 
@@ -142,7 +142,7 @@
 
         &:drop(active) {
             border-style: solid none;
-            border-width: 1px;
+            border-width: $borders_width;
             border-color: $selected_borders_color;
 
             &.after { border-top-style: none; }
@@ -175,7 +175,7 @@
             @if $variant == light { color: $base_color; }
 
             border-radius: $roundness;
-            border: 1px solid $selected_borders_color;
+            border: $borders_width solid $selected_borders_color;
             background-color: $selected_bg_color;
             //background-image: linear-gradient(to bottom, $selected_bg_color, darken($selected_bg_color, .1));
             //box-shadow: inset 0 1px $fg_color,
@@ -204,7 +204,7 @@
                         background-color: mix($backdrop_base_color, $selected_bg_color, .9);
                     }
                 }
-                border: 1px solid mix($selected_bg_color, $selected_fg_color, .2);
+                border: $borders_width solid mix($selected_bg_color, $selected_fg_color, .2);
             }
 
             &:disabled {
@@ -233,7 +233,7 @@
                     background-color: if($variant == 'light', transparentize($selected_fg_color, .7), darken($selected_bg_color, .1));
 
                     @if $variant == 'light' {
-                        border-width: 1px 0;
+                        border-width: $borders_width 0;
                         border-style: solid;
                         border-color: $selected_bg_color;
                     }
@@ -312,7 +312,7 @@
 
 @include exports("frame") {
     frame > border, .frame {
-        border: 1px solid $borders_color;
+        border: $borders_width solid $borders_color;
 
         &.flat { border-style: none; }
 

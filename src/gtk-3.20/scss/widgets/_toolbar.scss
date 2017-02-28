@@ -51,7 +51,7 @@
 
 @mixin inline-toolbar($bg, $fg) {
     padding: 1px;
-    border-width: 0 1px 1px;
+    border-width: 0 $borders_width $borders_width;
     border-style: solid;
     border-color: $borders_color;
     background-color: mix($borders_color, $bg_color, .7);;
@@ -89,7 +89,7 @@
     }
 
     %headerbar {
-        border-width: 0 0 1px;
+        border-width: 0 0 $borders_width;
         border-style: solid;
 
         // add vertical margins to common widget on the headerbar to avoid them spanning the whole height

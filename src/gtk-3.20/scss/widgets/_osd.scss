@@ -39,7 +39,7 @@
         -GtkToolbar-button-relief: normal;
 
         padding: $spacing;
-        border: 1px solid border_normal($osd_bg);
+        border: $borders_width solid border_normal($osd_bg);
         border-radius: $roundness;
         background-color: $osd_bg;
         background-image: none;
@@ -164,7 +164,7 @@
             trough { background-color: $osd_bg; }
 
             slider {
-                border: 1px solid mix(shade($osd_bg, .87), $osd_fg, .21);
+                border: $borders_width solid mix(shade($osd_bg, .87), $osd_fg, .21);
                 border-radius: 0;
                 background-color: mix($osd_bg, $osd_fg, .21);
 
@@ -183,7 +183,7 @@
         iconview.cell {
             &:selected, &:selected:focus {
                 background-color: transparent;
-                border: 3px solid mix(shade($osd_bg, .87), $osd_fg, .21);
+                border: $borders_width*3 solid mix(shade($osd_bg, .87), $osd_fg, .21);
                 border-radius: $roundness;
                 outline-color: transparent;
             }
@@ -191,7 +191,7 @@
 
         /* used by Documents */
         .page-thumbnail {
-            border: 1px solid shade($osd_bg, .9);
+            border: $borders_width solid shade($osd_bg, .9);
             /* when there's no pixbuf yet */
             background-color: $osd_bg;
         }

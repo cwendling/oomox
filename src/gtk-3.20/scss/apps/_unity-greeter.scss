@@ -44,7 +44,7 @@
             &.selected {
                 background-color: fade-out($black, .7);
                 border-color: fade-out($white, .7);
-                border-width: 1px;
+                border-width: $borders_width;
 
                 &:hover { background-color: fade-out($white, .7); }
             }
@@ -83,7 +83,7 @@
 
             &:focus {
                 border-color: fade-out($white, .4);
-                border-width: 1px;
+                border-width: $borders_width;
                 border-style: solid;
                 color: $white;
             }

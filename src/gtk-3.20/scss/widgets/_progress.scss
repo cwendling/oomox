@@ -21,7 +21,7 @@
         }
 
         trough {
-            border: 1px solid mix($bg_color, $fg_color, .17);
+            border: $borders_width solid mix($bg_color, $fg_color, .17);
             background-color: shade($bg_color, 1.08);
             background-image: none;
             border-radius: $roundness;
@@ -70,7 +70,7 @@
         trough {
             @include linear-gradient(shade($bg_color, 1.08), to top);
 
-            border: 1px solid mix($bg_color, $fg_color, .17);
+            border: $borders_width solid mix($bg_color, $fg_color, .17);
             border-radius: $roundness;
             padding: 2px; // make discrete block appear inside levelbar
         }
@@ -211,7 +211,7 @@
             $_slider_border: $button_border;
 
             background-color: $button_bg;
-            border: 1px solid $_slider_border;
+            border: $borders_width solid $_slider_border;
             border-radius: 100%;
 
             transition: $button_transition;

@@ -13,7 +13,7 @@
         .raven-header {
             background-color: $bg_color;
             border: solid $borders_color;
-            border-width: 1px 0;
+            border-width: $borders_width 0;
         }
 
         .raven-background {
