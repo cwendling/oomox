@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, Atk
 
 from .theme_model import theme_model
 from .helpers import (
@@ -250,6 +250,18 @@ class ColorListBoxRow(Gtk.ListBoxRow):
             parent_window=self.parent_window,
             callback=self.on_color_set
         )
+
+        label_accessible = label.get_accessible()
+        entry_accessible = self.color_entry.get_accessible()
+        button_accessible = self.color_button.get_accessible()
+
+        label_accessible.add_relationship(Atk.RelationType.LABEL_FOR, entry_accessible)
+        label_accessible.add_relationship(Atk.RelationType.LABEL_FOR, button_accessible)
+        entry_accessible.add_relationship(Atk.RelationType.LABELLED_BY, label_accessible)
+        button_accessible.add_relationship(Atk.RelationType.LABELLED_BY, label_accessible)
+
+        entry_accessible.add_relationship(Atk.RelationType.CONTROLLED_BY, button_accessible)
+        button_accessible.add_relationship(Atk.RelationType.CONTROLLER_FOR, entry_accessible)
 
         # @TODO:
         if False:
